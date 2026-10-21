@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Falta Pouquinho 🌻</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      overflow-y:auto;
+      overflow-x:hidden;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      background:
+      linear-gradient(
+        135deg,
+        #e9d5ff,
+        #f5d0fe,
+        #fef3c7
+      );
+
+      padding:40px 20px;
+      position:relative;
+    }
+
+    .decoracao{
+      position:absolute;
+      opacity:0.25;
+      animation:flutuar 4s ease-in-out infinite;
+      pointer-events:none;
+    }
+
+    .g1{
+      top:30px;
+      left:40px;
+      font-size:70px;
+    }
+
+    .g2{
+      bottom:30px;
+      right:40px;
+      font-size:80px;
+    }
+
+    .g3{
+      top:100px;
+      right:120px;
+      font-size:50px;
+    }
+
+    .g4{
+      bottom:120px;
+      left:100px;
+      font-size:40px;
+    }
+
+    @keyframes flutuar{
+      0%{
+        transform:translateY(0px);
+      }
+
+      50%{
+        transform:translateY(-10px);
+      }
+
+      100%{
+        transform:translateY(0px);
+      }
+    }
+
+    .container{
+      width:100%;
+      max-width:720px;
+
+      background:rgba(255,255,255,0.35);
+
+      backdrop-filter:blur(16px);
+
+      border:1px solid rgba(255,255,255,0.5);
+
+      border-radius:35px;
+
+      padding:35px;
+
+      text-align:center;
+
+      box-shadow:0 15px 40px rgba(0,0,0,0.15);
+
+      margin:40px 0;
+    }
+
+    .topo{
+      margin-bottom:30px;
+    }
+
+    .girassol{
+      font-size:80px;
+      margin-bottom:10px;
+    }
+
+    .topo h1{
+      color:#4c1d95;
+      font-size:52px;
+      margin-bottom:10px;
+    }
+
+    .topo p{
+      color:#6d28d9;
+      font-size:20px;
+    }
+
+    .dias-box{
+      background:
+      linear-gradient(
+        135deg,
+        #9333ea,
+        #a855f7
+      );
+
+      color:white;
+
+      padding:30px;
+
+      border-radius:30px;
+
+      margin-bottom:30px;
+
+      box-shadow:
+      0 10px 25px rgba(147,51,234,0.35);
+    }
+
+    .dias-box p{
+      font-size:18px;
+      opacity:0.9;
+    }
+
+    .dias-box h2{
+      font-size:90px;
+      margin:10px 0;
+    }
+
+    .timer{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:15px;
+      margin-bottom:30px;
+    }
+
+    .timer-card{
+      background:rgba(255,255,255,0.6);
+
+      padding:25px;
+
+      border-radius:25px;
+
+      box-shadow:
+      0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .timer-card h3{
+      font-size:48px;
+      color:#5b21b6;
+    }
+
+    .timer-card span{
+      color:#7c3aed;
+      font-size:18px;
+    }
+
+    .barra{
+      width:100%;
+      height:24px;
+
+      background:rgba(255,255,255,0.5);
+
+      border-radius:999px;
+
+      overflow:hidden;
+
+      margin-bottom:15px;
+    }
+
+    .progresso{
+      width:0%;
+      height:100%;
+
+      border-radius:999px;
+
+      background:
+      linear-gradient(
+        90deg,
+        #facc15,
+        #f59e0b
+      );
+
+      transition:0.5s;
+    }
+
+    .porcentagem{
+      color:#5b21b6;
+      font-weight:bold;
+      margin-bottom:25px;
+      font-size:18px;
+    }
+
+    .mensagem{
+      background:rgba(233,213,255,0.6);
+
+      padding:25px;
+
+      border-radius:25px;
+
+      border:
+      1px solid rgba(192,132,252,0.4);
+
+      color:#4c1d95;
+
+      line-height:1.7;
+
+      font-size:20px;
+    }
+
+    .footer{
+      margin-top:25px;
+      font-size:35px;
+      opacity:0.7;
+    }
+
+    @media(max-width:700px){
+
+      .topo h1{
+        font-size:38px;
+      }
+
+      .dias-box h2{
+        font-size:70px;
+      }
+
+      .timer{
+        grid-template-columns:1fr;
+      }
+
+      .timer-card h3{
+        font-size:40px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="decoracao g1">🌻</div>
+  <div class="decoracao g2">🌻</div>
+  <div class="decoracao g3">💜</div>
+  <div class="decoracao g4">✨</div>
+
+  <div class="container">
+
+    <div class="topo">
+
+      <div class="girassol">🌻</div>
+
+      <h1>Falta Pouquinho</h1>
+
+      <p>Um dia de cada vez 💜</p>
+
+    </div>
+
+    <div class="dias-box">
+
+      <p>Dias úteis restantes</p>
+
+      <h2 id="dias">0</h2>
+
+      <p>Cada dia vencido é uma vitória 🌻</p>
+
+    </div>
+
+    <div class="timer">
+
+      <div class="timer-card">
+
+        <h3 id="horas">00</h3>
+
+        <span>Horas</span>
+
+      </div>
+
+      <div class="timer-card">
+
+        <h3 id="minutos">00</h3>
+
+        <span>Minutos</span>
+
+      </div>
+
+      <div class="timer-card">
+
+        <h3 id="segundos">00</h3>
+
+        <span>Segundos</span>
+
+      </div>
+
+    </div>
+
+    <div class="barra">
+
+      <div
+        class="progresso"
+        id="progresso"
+      ></div>
+
+    </div>
+
+    <div
+      class="porcentagem"
+      id="porcentagem"
+    >
+      0%
+    </div>
+
+    <div class="mensagem">
+
+      “Você é mais forte do que esses dias difíceis.
+      Logo isso passa e tudo volta ao normal 🌻💜     
+      Você é incrível em tudo que se dispõe a fazer.
+      Não são alguns dias ruins que vão ofuscar o seu brilho✨❤️”
+    </div>
+
+    <div class="footer">
+
+      🌻 ✨ 💜 🌻
+
+    </div>
+
+  </div>
+
+  <script>
+
+    // DATA FINAL
+    const dataFinal =
+    new Date("2026-07-31T17:00:00");
+
+    // VERIFICA FIM DE SEMANA
+    function ehFinalDeSemana(data){
+
+      const dia = data.getDay();
+
+      return dia === 0 || dia === 6;
+    }
+
+    // CALCULA DIAS ÚTEIS
+    function calcularDiasUteis(){
+
+      const hoje = new Date();
+
+      let contador = 0;
+
+      let dataAtual = new Date(hoje);
+
+      while(dataAtual <= dataFinal){
+
+        const diaSemana =
+        dataAtual.getDay();
+
+        if(
+          diaSemana !== 0 &&
+          diaSemana !== 6
+        ){
+          contador++;
+        }
+
+        dataAtual.setDate(
+          dataAtual.getDate() + 1
+        );
+      }
+
+      return contador;
+    }
+
+    // ATUALIZA TUDO
+    function atualizarSistema(){
+
+      const agora = new Date();
+
+      const inicio = new Date();
+      inicio.setHours(7,0,0,0);
+
+      const fim = new Date();
+      fim.setHours(17,0,0,0);
+
+      const finalDeSemana =
+      ehFinalDeSemana(agora);
+
+      let diferenca = fim - agora;
+
+      if(diferenca < 0){
+        diferenca = 0;
+      }
+
+      // PAUSA FIM DE SEMANA
+      if(finalDeSemana){
+        diferenca = 0;
+      }
+
+      const horas = Math.floor(
+        diferenca /
+        (1000 * 60 * 60)
+      );
+
+      const minutos = Math.floor(
+        (
+          diferenca %
+          (1000 * 60 * 60)
+        ) /
+        (1000 * 60)
+      );
+
+      const segundos = Math.floor(
+        (
+          diferenca %
+          (1000 * 60)
+        ) / 1000
+      );
+
+      // ATUALIZA TIMER
+      document.getElementById(
+        "horas"
+      ).innerText =
+      finalDeSemana
+      ? "🌻"
+      : String(horas).padStart(2,'0');
+
+      document.getElementById(
+        "minutos"
+      ).innerText =
+      finalDeSemana
+      ? "💜"
+      : String(minutos).padStart(2,'0');
+
+      document.getElementById(
+        "segundos"
+      ).innerText =
+      finalDeSemana
+      ? "✨"
+      : String(segundos).padStart(2,'0');
+
+      // DIAS ÚTEIS
+      document.getElementById(
+        "dias"
+      ).innerText =
+      calcularDiasUteis();
+
+      // PROGRESSO
+      const totalDia =
+      fim - inicio;
+
+      const progresso =
+      finalDeSemana
+      ? 0
+      : Math.min(
+          100,
+          Math.max(
+            0,
+            (
+              (agora - inicio) /
+              totalDia
+            ) * 100
+          )
+        );
+
+      document.getElementById(
+        "progresso"
+      ).style.width =
+      progresso + "%";
+
+      // TEXTO PROGRESSO
+      document.getElementById(
+        "porcentagem"
+      ).innerText =
+      finalDeSemana
+      ? "Fim de semana 🌻 Hora de descansar 💜"
+      : Math.floor(progresso) +
+        "% do turno concluído ✨";
+    }
+
+    atualizarSistema();
+
+    setInterval(
+      atualizarSistema,
+      1000
+    );
+
+  </script>
+
+</body>
+</html>
